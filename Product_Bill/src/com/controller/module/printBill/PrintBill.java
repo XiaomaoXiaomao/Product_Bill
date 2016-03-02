@@ -96,14 +96,15 @@ public class PrintBill {
 	
 	private static void inputProductDiscount(String discountType){
 		Scanner scan = new Scanner(System.in);
-		String productRate95 = scan.next();
-		String[] productRate95Array = productRate95.substring(0, productRate95.length() - 1).replaceAll("'","").split(",");
-		for(String barCode : productRate95Array){
+		String productDiscountInfo = scan.next();
+		String[] productArray = productDiscountInfo.substring(1, productDiscountInfo.length() - 1).replaceAll("'","").split(",");
+		for(String barCode : productArray){
 			int priority;
 			if(discountType.equals(Discount.DISCOUNT_PRESENT_2_1)){
 				priority = ProductDiscount.PRIORITY_FIRST;
 			}else{
-				if(ProductDiscountList.findByBarCodeAndPriority(barCode, ProductDiscount.PRIORITY_FIRST) == null){
+				if(ProductDiscountList.findByBarCodeAndPriority(barCode, ProductDiscount.PRIORITY_FIRST)
+						.getDiscountCode().equals(Discount.DISCOUNT_NONE)){
 					priority = ProductDiscount.PRIORITY_FIRST;
 				}else{
 					priority = ProductDiscount.PRIORITY_SECOND;
