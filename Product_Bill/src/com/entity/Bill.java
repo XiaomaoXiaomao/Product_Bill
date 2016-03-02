@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.common.CompBulkAfterCountOrder;
 import com.common.Printer;
 import com.repository.ProductList;
 
@@ -47,6 +48,9 @@ public class Bill {
 	**********************
 	 */
 	public StringBuffer print(){
+		//order bill detail
+		Collections.sort(billDetailList, new CompBulkAfterCountOrder());
+		
 		StringBuffer stringBuf = new StringBuffer();
 		Printer.print("***<没钱赚商店>购物清单***");
 		for(BillDetail billDetail : billDetailList){

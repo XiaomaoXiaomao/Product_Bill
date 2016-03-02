@@ -3,6 +3,7 @@ package com.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.entity.Discount;
 import com.entity.ProductDiscount;
 
 public class ProductDiscountList {
@@ -27,7 +28,7 @@ public class ProductDiscountList {
 				return productDiscount;
 			}
 		}
-		return null;
+		return new ProductDiscount(barCode, Discount.DISCOUNT_NONE, ProductDiscount.PRIORITY_FIRST);
 	}
 	
 }
